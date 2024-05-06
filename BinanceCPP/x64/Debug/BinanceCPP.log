@@ -1,0 +1,216 @@
+﻿  BinanceCPP.cpp
+D:\Desktop\College\Programming\Collaborative\BinanceCPP\BinanceCPP\BinanceCPP.cpp(61,24): warning C4834: удаление возвращаемого значения функции с атрибутом [[nodiscard]]
+D:\Desktop\College\Programming\Collaborative\BinanceCPP\BinanceCPP\BinanceCPP.cpp(230,16): warning C4101: sum: неиспользованная локальная переменная
+D:\VS\VC\Tools\MSVC\14.38.33130\include\xutility(5823,13): error C2679: бинарный "==": не найден оператор, принимающий правый операнд типа "const _Ty" (или приемлемое преобразование отсутствует)
+D:\VS\VC\Tools\MSVC\14.38.33130\include\xutility(5823,13): error C2679:         with
+D:\VS\VC\Tools\MSVC\14.38.33130\include\xutility(5823,13): error C2679:         [
+D:\VS\VC\Tools\MSVC\14.38.33130\include\xutility(5823,13): error C2679:             _Ty=int
+D:\VS\VC\Tools\MSVC\14.38.33130\include\xutility(5823,13): error C2679:         ]
+  (компиляция исходного файла "BinanceCPP.cpp")
+  D:\Desktop\College\Programming\Collaborative\BinanceCPP\BinanceCPP\BinanceCPP.cpp(49,10):
+  может быть "bool CryptoCurrency::operator ==(const CryptoCurrency &) const"
+  D:\VS\VC\Tools\MSVC\14.38.33130\include\xutility(4251,5):
+  или       "bool std::operator ==(const std::move_iterator<_Iter> &,const std::move_iterator<_Iter2> &) noexcept(<expr>)"
+  	D:\VS\VC\Tools\MSVC\14.38.33130\include\xutility(5823,13):
+  	'bool std::operator ==(const std::move_iterator<_Iter> &,const std::move_iterator<_Iter2> &) noexcept(<expr>)': не удалось вывести аргумент шаблон для 'const std::move_iterator<_Iter> &' из 'CryptoCurrency'
+  D:\VS\VC\Tools\MSVC\14.38.33130\include\xutility(1676,5):
+  или       "bool std::operator ==(const std::reverse_iterator<_BidIt> &,const std::reverse_iterator<_BidIt2> &) noexcept(<expr>)"
+  	D:\VS\VC\Tools\MSVC\14.38.33130\include\xutility(5823,13):
+  	'bool std::operator ==(const std::reverse_iterator<_BidIt> &,const std::reverse_iterator<_BidIt2> &) noexcept(<expr>)': не удалось вывести аргумент шаблон для 'const std::reverse_iterator<_BidIt> &' из 'CryptoCurrency'
+  D:\VS\VC\Tools\MSVC\14.38.33130\include\utility(490,27):
+  или       "bool std::operator ==(const std::pair<_Ty1,_Ty2> &,const std::pair<_Uty1,_Uty2> &)"
+  	D:\VS\VC\Tools\MSVC\14.38.33130\include\xutility(5823,13):
+  	'bool std::operator ==(const std::pair<_Ty1,_Ty2> &,const std::pair<_Uty1,_Uty2> &)': не удалось вывести аргумент шаблон для 'const std::pair<_Ty1,_Ty2> &' из 'CryptoCurrency'
+  D:\VS\VC\Tools\MSVC\14.38.33130\include\xutility(5823,13):
+  при попытке сопоставить список аргументов "(CryptoCurrency, const _Ty)"
+          with
+          [
+              _Ty=int
+          ]
+  D:\VS\VC\Tools\MSVC\14.38.33130\include\xutility(5823,13):
+  контекст создания экземпляра шаблона (сначала самый старый)
+  	D:\Desktop\College\Programming\Collaborative\BinanceCPP\BinanceCPP\BinanceCPP.cpp(202,17):
+  	выполняется компиляция ссылки на экземпляр шаблон функции "_InIt std::find<std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>,int>(_InIt,const _InIt,const int &)"
+          with
+          [
+              _InIt=std::_Vector_iterator<std::_Vector_val<std::_Simple_types<CryptoCurrency>>>,
+              _Ty=CryptoCurrency
+          ]
+  	D:\VS\VC\Tools\MSVC\14.38.33130\include\xutility(5837,36):
+  	выполняется компиляция ссылки на экземпляр шаблон функции "_InIt std::_Find_unchecked<CryptoCurrency*,_Ty>(_InIt,const _InIt,const _Ty &)"
+          with
+          [
+              _InIt=CryptoCurrency *,
+              _Ty=int
+          ]
+  
+D:\VS\VC\Tools\MSVC\14.38.33130\include\type_traits(2441,55): error C2676: бинарный "<": "const _Ty" не определяет этот оператор или преобразование к типу приемлемо к встроенному оператору
+D:\VS\VC\Tools\MSVC\14.38.33130\include\type_traits(2441,55): error C2676:         with
+D:\VS\VC\Tools\MSVC\14.38.33130\include\type_traits(2441,55): error C2676:         [
+D:\VS\VC\Tools\MSVC\14.38.33130\include\type_traits(2441,55): error C2676:             _Ty=CryptoCurrency
+D:\VS\VC\Tools\MSVC\14.38.33130\include\type_traits(2441,55): error C2676:         ]
+  (компиляция исходного файла "BinanceCPP.cpp")
+  D:\VS\VC\Tools\MSVC\14.38.33130\include\vector(2318,30):
+  может быть "bool std::operator <(const std::vector<_Ty,_Alloc> &,const std::vector<_Ty,_Alloc> &)"
+  	D:\VS\VC\Tools\MSVC\14.38.33130\include\type_traits(2441,49):
+  	'bool std::operator <(const std::vector<_Ty,_Alloc> &,const std::vector<_Ty,_Alloc> &)': не удалось вывести аргумент шаблон для 'const std::vector<_Ty,_Alloc> &' из 'const _Ty'
+          with
+          [
+              _Ty=CryptoCurrency
+          ]
+  D:\VS\VC\Tools\MSVC\14.38.33130\include\map(656,17):
+  или       "bool std::operator <(const std::multimap<_Kty,_Ty,_Pr,_Alloc> &,const std::multimap<_Kty,_Ty,_Pr,_Alloc> &)"
+  	D:\VS\VC\Tools\MSVC\14.38.33130\include\type_traits(2441,49):
+  	'bool std::operator <(const std::multimap<_Kty,_Ty,_Pr,_Alloc> &,const std::multimap<_Kty,_Ty,_Pr,_Alloc> &)': не удалось вывести аргумент шаблон для 'const std::multimap<_Kty,_Ty,_Pr,_Alloc> &' из 'const _Ty'
+          with
+          [
+              _Ty=CryptoCurrency
+          ]
+  D:\VS\VC\Tools\MSVC\14.38.33130\include\map(421,17):
+  или       "bool std::operator <(const std::map<_Kty,_Ty,_Pr,_Alloc> &,const std::map<_Kty,_Ty,_Pr,_Alloc> &)"
+  	D:\VS\VC\Tools\MSVC\14.38.33130\include\type_traits(2441,49):
+  	'bool std::operator <(const std::map<_Kty,_Ty,_Pr,_Alloc> &,const std::map<_Kty,_Ty,_Pr,_Alloc> &)': не удалось вывести аргумент шаблон для 'const std::map<_Kty,_Ty,_Pr,_Alloc> &' из 'const _Ty'
+          with
+          [
+              _Ty=CryptoCurrency
+          ]
+  D:\VS\VC\Tools\MSVC\14.38.33130\include\tuple(893,27):
+  или       "bool std::operator <(const std::tuple<_Types...> &,const std::tuple<_Types...> &)"
+  	D:\VS\VC\Tools\MSVC\14.38.33130\include\type_traits(2441,49):
+  	'bool std::operator <(const std::tuple<_Types...> &,const std::tuple<_Types...> &)': не удалось вывести аргумент шаблон для 'const std::tuple<_Types...> &' из 'const _Ty'
+          with
+          [
+              _Ty=CryptoCurrency
+          ]
+  D:\VS\VC\Tools\MSVC\14.38.33130\include\memory(3577,30):
+  или       "bool std::operator <(std::nullptr_t,const std::unique_ptr<_Ty,_Dx> &)"
+  	D:\VS\VC\Tools\MSVC\14.38.33130\include\type_traits(2441,49):
+  	'bool std::operator <(std::nullptr_t,const std::unique_ptr<_Ty,_Dx> &)': не удалось вывести аргумент шаблон для 'const std::unique_ptr<_Ty,_Dx> &' из 'const _Ty'
+          with
+          [
+              _Ty=CryptoCurrency
+          ]
+  D:\VS\VC\Tools\MSVC\14.38.33130\include\memory(3571,30):
+  или       "bool std::operator <(const std::unique_ptr<_Ty,_Dx> &,std::nullptr_t)"
+  	D:\VS\VC\Tools\MSVC\14.38.33130\include\type_traits(2441,49):
+  	'bool std::operator <(const std::unique_ptr<_Ty,_Dx> &,std::nullptr_t)': не удалось вывести аргумент шаблон для 'const std::unique_ptr<_Ty,_Dx> &' из 'const _Ty'
+          with
+          [
+              _Ty=CryptoCurrency
+          ]
+  D:\VS\VC\Tools\MSVC\14.38.33130\include\memory(3513,17):
+  или       "bool std::operator <(const std::unique_ptr<_Ty,_Dx> &,const std::unique_ptr<_Ty2,_Dx2> &)"
+  	D:\VS\VC\Tools\MSVC\14.38.33130\include\type_traits(2441,49):
+  	'bool std::operator <(const std::unique_ptr<_Ty,_Dx> &,const std::unique_ptr<_Ty2,_Dx2> &)': не удалось вывести аргумент шаблон для 'const std::unique_ptr<_Ty,_Dx> &' из 'const _Ty'
+          with
+          [
+              _Ty=CryptoCurrency
+          ]
+  D:\VS\VC\Tools\MSVC\14.38.33130\include\memory(1942,17):
+  или       "bool std::operator <(std::nullptr_t,const std::shared_ptr<_Ty> &) noexcept"
+  	D:\VS\VC\Tools\MSVC\14.38.33130\include\type_traits(2441,49):
+  	'bool std::operator <(std::nullptr_t,const std::shared_ptr<_Ty> &) noexcept': не удалось вывести аргумент шаблон для 'const std::shared_ptr<_Ty> &' из 'const _Ty'
+          with
+          [
+              _Ty=CryptoCurrency
+          ]
+  D:\VS\VC\Tools\MSVC\14.38.33130\include\memory(1937,17):
+  или       "bool std::operator <(const std::shared_ptr<_Ty> &,std::nullptr_t) noexcept"
+  	D:\VS\VC\Tools\MSVC\14.38.33130\include\type_traits(2441,49):
+  	'bool std::operator <(const std::shared_ptr<_Ty> &,std::nullptr_t) noexcept': не удалось вывести аргумент шаблон для 'const std::shared_ptr<_Ty> &' из 'const _Ty'
+          with
+          [
+              _Ty=CryptoCurrency
+          ]
+  D:\VS\VC\Tools\MSVC\14.38.33130\include\memory(1890,17):
+  или       "bool std::operator <(const std::shared_ptr<_Ty> &,const std::shared_ptr<_Ty0> &) noexcept"
+  	D:\VS\VC\Tools\MSVC\14.38.33130\include\type_traits(2441,49):
+  	'bool std::operator <(const std::shared_ptr<_Ty> &,const std::shared_ptr<_Ty0> &) noexcept': не удалось вывести аргумент шаблон для 'const std::shared_ptr<_Ty> &' из 'const _Ty'
+          with
+          [
+              _Ty=CryptoCurrency
+          ]
+  D:\VS\VC\Tools\MSVC\14.38.33130\include\xstring(5074,17):
+  или       "bool std::operator <(const std::basic_string<_Elem,_Traits,_Alloc> &,const _Elem *const )"
+  	D:\VS\VC\Tools\MSVC\14.38.33130\include\type_traits(2441,49):
+  	'bool std::operator <(const std::basic_string<_Elem,_Traits,_Alloc> &,const _Elem *const )': не удалось вывести аргумент шаблон для 'const std::basic_string<_Elem,_Traits,_Alloc> &' из 'const _Ty'
+          with
+          [
+              _Ty=CryptoCurrency
+          ]
+  D:\VS\VC\Tools\MSVC\14.38.33130\include\xstring(5069,17):
+  или       "bool std::operator <(const _Elem *const ,const std::basic_string<_Elem,_Traits,_Alloc> &)"
+  	D:\VS\VC\Tools\MSVC\14.38.33130\include\type_traits(2441,49):
+  	'bool std::operator <(const _Elem *const ,const std::basic_string<_Elem,_Traits,_Alloc> &)': не удалось вывести аргумент шаблон для 'const _Elem *const ' из 'const _Ty'
+          with
+          [
+              _Ty=CryptoCurrency
+          ]
+  D:\VS\VC\Tools\MSVC\14.38.33130\include\xstring(5063,17):
+  или       "bool std::operator <(const std::basic_string<_Elem,_Traits,_Alloc> &,const std::basic_string<_Elem,_Traits,_Alloc> &) noexcept"
+  	D:\VS\VC\Tools\MSVC\14.38.33130\include\type_traits(2441,49):
+  	'bool std::operator <(const std::basic_string<_Elem,_Traits,_Alloc> &,const std::basic_string<_Elem,_Traits,_Alloc> &) noexcept': не удалось вывести аргумент шаблон для 'const std::basic_string<_Elem,_Traits,_Alloc> &' из 'const _Ty'
+          with
+          [
+              _Ty=CryptoCurrency
+          ]
+  D:\VS\VC\Tools\MSVC\14.38.33130\include\xutility(4274,5):
+  или       "bool std::operator <(const std::move_iterator<_Iter> &,const std::move_iterator<_Iter2> &) noexcept(<expr>)"
+  	D:\VS\VC\Tools\MSVC\14.38.33130\include\type_traits(2441,49):
+  	'bool std::operator <(const std::move_iterator<_Iter> &,const std::move_iterator<_Iter2> &) noexcept(<expr>)': не удалось вывести аргумент шаблон для 'const std::move_iterator<_Iter> &' из 'const _Ty'
+          with
+          [
+              _Ty=CryptoCurrency
+          ]
+  D:\VS\VC\Tools\MSVC\14.38.33130\include\xutility(1706,5):
+  или       "bool std::operator <(const std::reverse_iterator<_BidIt> &,const std::reverse_iterator<_BidIt2> &) noexcept(<expr>)"
+  	D:\VS\VC\Tools\MSVC\14.38.33130\include\type_traits(2441,49):
+  	'bool std::operator <(const std::reverse_iterator<_BidIt> &,const std::reverse_iterator<_BidIt2> &) noexcept(<expr>)': не удалось вывести аргумент шаблон для 'const std::reverse_iterator<_BidIt> &' из 'const _Ty'
+          with
+          [
+              _Ty=CryptoCurrency
+          ]
+  D:\VS\VC\Tools\MSVC\14.38.33130\include\utility(513,27):
+  или       "bool std::operator <(const std::pair<_Ty1,_Ty2> &,const std::pair<_Uty1,_Uty2> &)"
+  	D:\VS\VC\Tools\MSVC\14.38.33130\include\type_traits(2441,49):
+  	'bool std::operator <(const std::pair<_Ty1,_Ty2> &,const std::pair<_Uty1,_Uty2> &)': не удалось вывести аргумент шаблон для 'const std::pair<_Ty1,_Ty2> &' из 'const _Ty'
+          with
+          [
+              _Ty=CryptoCurrency
+          ]
+  D:\VS\VC\Tools\MSVC\14.38.33130\include\type_traits(2441,55):
+  контекст создания экземпляра шаблона (сначала самый старый)
+  	D:\Desktop\College\Programming\Collaborative\BinanceCPP\BinanceCPP\BinanceCPP.cpp(116,33):
+  	выполняется компиляция ссылки на экземпляр класс шаблон функции "std::map<CryptoCurrency,double,std::less<CryptoCurrency>,std::allocator<std::pair<const CryptoCurrency,double>>>"
+  	D:\VS\VC\Tools\MSVC\14.38.33130\include\map(345,18):
+  	во время компиляции функции-члена класс шаблон "double &std::map<CryptoCurrency,double,std::less<CryptoCurrency>,std::allocator<std::pair<const CryptoCurrency,double>>>::operator [](const CryptoCurrency &)"
+  		D:\Desktop\College\Programming\Collaborative\BinanceCPP\BinanceCPP\BinanceCPP.cpp(95,34):
+  		см. первую ссылку на "std::map<CryptoCurrency,double,std::less<CryptoCurrency>,std::allocator<std::pair<const CryptoCurrency,double>>>::operator []" в "User::depositCurrencies"
+  	D:\VS\VC\Tools\MSVC\14.38.33130\include\map(346,16):
+  	выполняется компиляция ссылки на экземпляр шаблон функции "std::pair<std::_Tree_node<std::pair<const CryptoCurrency,double>,std::_Default_allocator_traits<_Alloc>::void_pointer> *,bool> std::map<CryptoCurrency,double,std::less<CryptoCurrency>,_Alloc>::_Try_emplace<const CryptoCurrency&,>(_Keyty)"
+          with
+          [
+              _Alloc=std::allocator<std::pair<const CryptoCurrency,double>>,
+              _Keyty=const CryptoCurrency &
+          ]
+  	D:\VS\VC\Tools\MSVC\14.38.33130\include\map(197,36):
+  	выполняется компиляция ссылки на экземпляр шаблон функции "std::_Tree_find_result<std::_Tree_node<std::pair<const CryptoCurrency,double>,std::_Default_allocator_traits<_Alloc>::void_pointer> *> std::_Tree<std::_Tmap_traits<_Kty,_Ty,_Pr,_Alloc,false>>::_Find_lower_bound<CryptoCurrency>(const _Keyty &) const"
+          with
+          [
+              _Alloc=std::allocator<std::pair<const CryptoCurrency,double>>,
+              _Kty=CryptoCurrency,
+              _Ty=double,
+              _Pr=std::less<CryptoCurrency>,
+              _Keyty=CryptoCurrency
+          ]
+  	D:\VS\VC\Tools\MSVC\14.38.33130\include\xtree(1610,17):
+  	выполняется компиляция ссылки на экземпляр шаблон функции "bool std::_Debug_lt_pred<const std::less<CryptoCurrency>&,const _Kty&,const _Keyty&,0>(_Pr,_Ty1,_Ty2) noexcept(<expr>)"
+          with
+          [
+              _Kty=CryptoCurrency,
+              _Keyty=CryptoCurrency,
+              _Pr=const std::less<CryptoCurrency> &,
+              _Ty1=const CryptoCurrency &,
+              _Ty2=const CryptoCurrency &
+          ]
+  

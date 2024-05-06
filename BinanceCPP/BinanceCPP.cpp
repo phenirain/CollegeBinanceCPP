@@ -1,39 +1,56 @@
 ﻿
 #include <iostream>
+#include <iostream>
 #include <string>
+#include <map>
 #include <vector>
-#include<unordered_map>
-#include <random>
+
 using namespace std;
 
 // криптовалюта имеет название, тикер, цену, количество, такжже френд класс бинанс
 // у валюты можно получить название, тикер, цену и количество
 class CryptoCurrency {
-    friend Binance;
 private:    
     string title;
     string ticker;
     double price;
     double amount;
 public:
-    CryptoCurrency(string title, string ticker, double price, double amount = 0):
-    title(title), ticker(ticker), price(price), amount(amount) {}
+    CryptoCurrency(string title, string ticker, double price, double amount = 0) {
+        this->title = title;
+        this->ticker = ticker;
+        this->price = price;
+        this->amount = amount;
+    }
+
+    ~CryptoCurrency() {
+    }
 
     double getPrice() {
-        return this->price;
+        return price;
     }
 
     string getTitle() {
-        return this->title;
+        return title;
     }
 
     string getTicker() {
-        return this->ticker;
+        return ticker;
+    }
+
+    double getAmount() {
+        return amount;
     }
 
     void buyMe(double amount) {
         this->amount -= amount;
     }
+
+    bool operator==(const CryptoCurrency& other) const {
+        return (title == other.title && ticker == other.ticker && price == other.price && amount == other.amount);
+    }
+
+
 
 };
 
@@ -41,46 +58,64 @@ public:
 // пользователь может: пополнить баланс, обналичить баланс, узнать баланс личного счета, узнать баланс крипты
 class User {
 public:
-    User(string login, string password, string name, string country, string email) :
-        login(login), password(password), name(name), country(country), email(email) {
-        // рандом генерация уникального адреса пользователя
+    User(string& login, string& password, string& country){
+        this->login = login;
+        this->password == password;
+        this->country = country;
+    }
+
+    bool operator<(const User& other) const {
+        return login < other.login; 
+    }
+
+    ~User() {
     }
 
     User() {}
 
-    string getAddress() {
-        return this->address;
-    }
-
     double getBalance() {
-        return this->balance;
+        return balance;
     }
 
-    string getAddress() {
-        this->address;
+    string getCountry() {
+        return country;
+    }
+
+    string getLogin() {
+        return login;
     }
 
     double getCurrenciesBalance() {
-        // красивый вывод всех валют пользователя со стоимостью и общим балансом
+        for (auto& pair : currencies) {
+            CryptoCurrency currency = pair.first;
+            cout << "Currency: " << currency.getTitle() << "Amount: " << pair.second << endl;
+        }
+    }
+
+    void depositCurrencies(CryptoCurrency& currency, double amount) {
+        if (currencies.find(currency) == currencies.end()) {
+            currencies[currency] = amount;
+        }
+        else currencies[currency] += amount;
+        cout << "Succesfully deposit\n";
     }
 
     void deposit(double amount) {
-        this->balance += amount;
+        balance += amount;
+        cout << "Succesfully deposit\n";
     }
 
     void withdraw(double amount) {
-        this->balance -= amount;
+        balance -= amount;
+        cout << "Succesfully withdraw\n";
     }
 
 private:
     string login;
     string password;
-    string name;
     string country;
-    string email;
-    string address;
     double balance;
-    unordered_map<CryptoCurrency, double> currencies;
+    map<CryptoCurrency, double> currencies;
 };
 
 
@@ -88,53 +123,141 @@ private:
 class Binance {
 public:
     bool LogIn(User& who) {
-        if (balances.find(who) == balances.end()) {
-            balances[who][availableCurrencies[0]] =  0;
-            return true;
+        if (find(availableCountries.begin(), availableCountries.end(), who.getCountry()) != availableCountries.end()) {
+            if (balances.find(who) == balances.end()) {
+                balances[who][availableCurrencies[0]] = 0;
+                return true;
+            }
+            cout << "Y`ve already registered\n";
+            return false;
         }
-        cout << "Y`ve already registered";
+        else {
+            cout << "Your country is banned\n";
+            return false;
+        }
+    }
+
+    bool authorizeOnMe(User& who) {
+        if (balances.find(who) != balances.end()) {
+            cout << "Successfully authorization\n";
+            return true;;
+        }
+        cout << "Y`re not registered\n";
         return false;
     }
 
-    void authorizeOnMe(User& who) {
-        this->user = who;
-    }
-
-    void deposit(double amount) {
+    bool deposit(User& by) {
+        double amount;
+        cout << "Amount to deposit: ";
+        cin >> amount;
+        string country = by.getCountry();
+        if (country == "RU") {
+            amount = amount * ruToUS;
+        }
+        if (by.getBalance() >= amount) {
+            if (country == "US") {
+                balances[by][availableCurrencies[0]] += amount;
+            }
+            else {
+                balances[by][availableCurrencies[0]] += amount / ruToUS;
+            }
+            by.withdraw(amount);
+            cout << "Succesfully deposit\n";
+            getBalance(by);
+            return true;
+        }
+        else {
+            cout << "Insufficient funds\n";
+            return false;
+        }
         // попытка пополнить баланс на бинансе
     }
 
-    void withdraw() {
+    bool withdraw(User& by, CryptoCurrency& currency) {
+        double amount;
+        cout << "Amount: ";
+        cin >> amount;
+        if (balances[by][currency] >= amount) {
+            by.depositCurrencies(currency, amount);
+            return true;
+        }
+        else {
+            cout << "Insufficient funds\n";
+            return false;
+        }
         // вывод средств на баланс пользователя
     }
 
     void addNewCurrency(CryptoCurrency& currency) {
-        this->availableCurrencies.push_back(currency);
+        availableCurrencies.push_back(currency);
     }
 
-    void buyCurrency(CryptoCurrency& currency, User& by) {
+    bool buyCurrency(User& by) {
+        while (true) {
+            int i;
+            double amount;
+            for (auto& currency : availableCurrencies) {
+                cout << i << ". Currency: " << currency.getTitle() << " Price: " << currency.getPrice() << " Amount: " << currency.getAmount() << endl;
+                i++;
+            }
+            cout << "To exit write: " << i << endl;
+            if (find(availableCurrencies.begin(), availableCurrencies.end(), i - 1) != availableCurrencies.end()) {
+                cout << "Amount: ";
+                cin >> amount;
+                CryptoCurrency currency = availableCurrencies[i - 1];
+                if (currency.getAmount() <= amount) {
+                    if (currency.getPrice() * amount <= balances[by][availableCurrencies[0]]) {
+                        balances[by][currency] = amount;
+                        balances[by][availableCurrencies[0]] -= currency.getPrice() * amount;
+                        currency.buyMe(amount);
+                        cout << "Succesfully purchase\n";
+                        return true;
+                    }
+                    else {
+                        cout << "Insufficient funds\n";
+                        return false;
+                    }
+                }
+                else {
+                    cout << "Limit exceeded\n";
+                    return false;
+                }
+            }
+        }
         // покупка пользователем крипты - запись в его крипту по адресу
     }
 
-    pair<double, double> getBalance(User& by) {
+    vector<CryptoCurrency> getBalance(User& by) {
         double usdt = balances[by][availableCurrencies[0]];
         double sum;
-        for (const auto& pair : balances[by]) {
-            sum += pair.second;
+        vector<CryptoCurrency> currencies;
+        int i = 1;
+        for (auto& pair : balances[by]) {
+            CryptoCurrency currency = pair.first;
+            cout << i << ". Currency: " << currency.getTicker() << "Amount: " << pair.second << endl;
+            i++;
+            currencies.push_back(currency);
         }
-        return make_pair(usdt, sum - usdt);
+        cout << "to exit write: " << i << endl;
+        return currencies;
     }
 
     Binance(vector<CryptoCurrency> availableCurrencies) {
         this->availableCurrencies.insert(this->availableCurrencies.end(), availableCurrencies.begin(), availableCurrencies.end());
     }
 
+    ~Binance() {
+    }
+
+    vector<CryptoCurrency> getAvailables() {
+        return availableCurrencies;
+    }
+
 private:
     const double ruToUS = 96.5;
-    User user;
     vector<CryptoCurrency> availableCurrencies = { CryptoCurrency("USDT", "USDT", 1.0) };
     vector<string> availableCountries = { "RU", "US" };
-    unordered_map<User, unordered_map<CryptoCurrency, double>> balances;
+    map<User, map<CryptoCurrency, double>> balances;
 };
 
 int main()
@@ -147,18 +270,61 @@ int main()
     CryptoCurrency OP("Optimism", "OP", 2.9, 20000.0);
     Binance binance({ BTC, ETH, ARB, OP });
     string answer;
-    // Доделать так чтобы можно было использовать все функции 
     while (true) {
         cout << "Welcome!!\nMy commands:\n1 - Create new User\n2 - Log in Binance\nSign in Binance\n4 - Exit";
         cin >> answer;
         if (answer == "1") {
-            cout << "";
+            while (true) {
+                string login;
+                string password;
+                string country;
+                cout << "Input login: ";
+                cin >> login;
+                for (auto& anyUser : users) {
+                    if (anyUser.getLogin() == login) {
+                        cout << "This login is already exist";
+                        continue;
+                    }
+                }
+                cout << "Input password: ";
+                cin >> password;
+                cout << "Input your country: ";
+                cin >> country;
+                user = User(login, password, country);
+                cout << "Successfully registration";
+                break;
+            }
         }
         else if (answer == "2") {
-            if (user.getAddress() != "") {
+            if (user.getLogin() != "") {
                 bool registered = binance.LogIn(user);
                 if (registered) {
-
+                    cout << "Now u can work with binanace";
+                    while (true) {
+                        cout << "Hello in binance\nWhat do u want do?\n1 - deposit\n2 - withdraw\n3 - buy any currency\n4 - exit";
+                        cin >> answer;
+                        if (answer == "1") {
+                            binance.deposit(user);
+                        }
+                        else if (answer == "2") {
+                            while (true) {
+                                int i;
+                                vector<CryptoCurrency> currencies = binance.getBalance(user);
+                                cout << "Which: ";
+                                cin >> i;
+                                if (find(currencies.begin(), currencies.end(), i - 1) != currencies.end()) {
+                                    binance.withdraw(user, currencies[i - 1]);
+                                }
+                                else break;
+                            }
+                        }
+                        else if (answer == "3") {
+                            binance.buyCurrency(user);
+                        }
+                        else if (answer == "4") {
+                            cout << "See u later there\n";
+                        }
+                    }
                 }
             }
             else {
@@ -166,19 +332,31 @@ int main()
             }
         }
         else if (answer == "3") {
-            cout << "Hello in binance\nWhat do u want do?\n1 - deposit\n2 - withdraw\n3 - buy any currency\n4 - exit";
-            cin >> answer;
-            if (answer == "1") {
-
-            }
-            else if (answer == "2") {
-
-            }
-            else if (answer == "3") {
-
-            }
-            else if (answer == "4") {
-
+            bool authorize = binance.authorizeOnMe(user);
+            if (authorize) {
+                cout << "Hello in binance\nWhat do u want do?\n1 - deposit\n2 - withdraw\n3 - buy any currency\n4 - exit";
+                cin >> answer;
+                if (answer == "1") {
+                    binance.deposit(user);
+                }
+                else if (answer == "2") {
+                    while (true) {
+                        int i;
+                        vector<CryptoCurrency> currencies = binance.getBalance(user);
+                        cout << "Which: ";
+                        cin >> i;
+                        if (find(currencies.begin(), currencies.end(), i - 1) != currencies.end()) {
+                            binance.withdraw(user, currencies[i - 1]);
+                        }
+                        else break;
+                    }
+                }
+                else if (answer == "3") {
+                    binance.buyCurrency(user);
+                }
+                else if (answer == "4") {
+                    cout << "See u later there\n";
+                }
             }
         }
         else if (answer == "4") {
@@ -186,7 +364,7 @@ int main()
             break;
         }
         else {
-            cout << "I don`t know what do u meen(";
+            cout << "I don`t know what do u meen(\n";
         }
     }
 }
