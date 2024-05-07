@@ -45,10 +45,13 @@ public:
     void buyMe(double amount) {
         this->amount -= amount;
     }
-
-    bool operator==(const CryptoCurrency& other) const {
-        return (title == other.title && ticker == other.ticker && price == other.price && amount == other.amount);
+    bool operator<(const CryptoCurrency& other) const {
+        return price < other.price;
     }
+
+   /* bool operator==(const CryptoCurrency& other) const {
+        return (title == other.title && ticker == other.ticker && price == other.price && amount == other.amount);
+    }*/
 
 
 
@@ -195,40 +198,57 @@ public:
 
     bool buyCurrency(User& by) {
         while (true) {
-            int i;
+            int i = 0;
             double amount;
             for (auto& currency : availableCurrencies) {
                 cout << i << ". Currency: " << currency.getTitle() << " Price: " << currency.getPrice() << " Amount: " << currency.getAmount() << endl;
                 i++;
             }
-            cout << "To exit write: " << i << endl;
-            if (find(availableCurrencies.begin(), availableCurrencies.end(), i - 1) != availableCurrencies.end()) {
-                cout << "Amount: ";
-                cin >> amount;
-                CryptoCurrency currency = availableCurrencies[i - 1];
-                double currencyAmount = currency.getAmount();
-                if (currencyAmount <= amount) {
-                    if (currency.getPrice() * amount <= balances[by][availableCurrencies[0]]) {
-                        balances[by][currency] = amount;
-                        double price = currency.getPrice();
-                        balances[by][availableCurrencies[0]] -= price * amount;
-                        currency.buyMe(amount);
-                        cout << "Succesfully purchase\n";
-                        return true;
-                    }
-                    else {
-                        cout << "Insufficient funds\n";
-                        return false;
-                    }
+            cout << "Amount: ";
+            cin >> amount;
+            CryptoCurrency currency = availableCurrencies[i - 1];
+            double currencyAmount = currency.getAmount();
+            double price = currency.getPrice();
+            if (currencyAmount <= amount) {
+                if (price * amount <= balances[by][availableCurrencies[0]]) {
+                    balances[by][currency] = amount;
+                    balances[by][availableCurrencies[0]] -= price * amount;
+                    currency.buyMe(amount);
+                    cout << "Succesfully purchase\n";
+                    return true;
                 }
                 else {
-                    cout << "Limit exceeded\n";
+                    cout << "Insufficient funds\n";
                     return false;
                 }
             }
+            /*cout << "To exit write: " << i << endl;
+            if (find(availableCurrencies.begin(), availableCurrencies.end(), availableCurrencies[i]) == availableCurrencies.end()) {
+                cout << "Limit exceeded\n";
+                return false;
+                }
+                else {
+                    cout << "Amount: ";
+                    cin >> amount;
+                    CryptoCurrency currency = availableCurrencies[i - 1];
+                    double currencyAmount = currency.getAmount();
+                    if (currencyAmount <= amount) {
+                        if (currency.getPrice() * amount <= balances[by][availableCurrencies[0]]) {
+                            balances[by][currency] = amount;
+                            double price = currency.getPrice();
+                            balances[by][availableCurrencies[0]] -= price * amount;
+                            currency.buyMe(amount);
+                            cout << "Succesfully purchase\n";
+                            return true;
+                        }
+                        else {
+                            cout << "Insufficient funds\n";
+                            return false;
+                        }
+                    }*/
+            }
         }
         // покупка пользователем крипты - запись в его крипту по адресу
-    }
 
     vector<CryptoCurrency> getBalance(User& by) {
         double usdt = balances[by][availableCurrencies[0]];
@@ -315,10 +335,7 @@ int main()
                                 vector<CryptoCurrency> currencies = binance.getBalance(user);
                                 cout << "Which: ";
                                 cin >> i;
-                                if (find(currencies.begin(), currencies.end(), i - 1) != currencies.end()) {
-                                    binance.withdraw(user, currencies[i - 1]);
-                                }
-                                else break;
+                                binance.withdraw(user, currencies[i - 1]);
                             }
                         }
                         else if (answer == "3") {
@@ -348,10 +365,7 @@ int main()
                         vector<CryptoCurrency> currencies = binance.getBalance(user);
                         cout << "Which: ";
                         cin >> i;
-                        if (find(currencies.begin(), currencies.end(), i - 1) != currencies.end()) {
-                            binance.withdraw(user, currencies[i - 1]);
-                        }
-                        else break;
+                        binance.withdraw(user, currencies[i - 1]);
                     }
                 }
                 else if (answer == "3") {
