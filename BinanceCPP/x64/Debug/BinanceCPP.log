@@ -1,6 +1,5 @@
 ﻿  BinanceCPP.cpp
-D:\Desktop\College\Programming\Collaborative\BinanceCPP\BinanceCPP\BinanceCPP.cpp(61,24): warning C4834: удаление возвращаемого значения функции с атрибутом [[nodiscard]]
-D:\Desktop\College\Programming\Collaborative\BinanceCPP\BinanceCPP\BinanceCPP.cpp(230,16): warning C4101: sum: неиспользованная локальная переменная
+D:\Desktop\College\Programming\Collaborative\BinanceCPP\BinanceCPP\BinanceCPP.cpp(235,16): warning C4101: sum: неиспользованная локальная переменная
 D:\VS\VC\Tools\MSVC\14.38.33130\include\xutility(5823,13): error C2679: бинарный "==": не найден оператор, принимающий правый операнд типа "const _Ty" (или приемлемое преобразование отсутствует)
 D:\VS\VC\Tools\MSVC\14.38.33130\include\xutility(5823,13): error C2679:         with
 D:\VS\VC\Tools\MSVC\14.38.33130\include\xutility(5823,13): error C2679:         [
@@ -29,7 +28,7 @@ D:\VS\VC\Tools\MSVC\14.38.33130\include\xutility(5823,13): error C2679:         
           ]
   D:\VS\VC\Tools\MSVC\14.38.33130\include\xutility(5823,13):
   контекст создания экземпляра шаблона (сначала самый старый)
-  	D:\Desktop\College\Programming\Collaborative\BinanceCPP\BinanceCPP\BinanceCPP.cpp(202,17):
+  	D:\Desktop\College\Programming\Collaborative\BinanceCPP\BinanceCPP\BinanceCPP.cpp(205,17):
   	выполняется компиляция ссылки на экземпляр шаблон функции "_InIt std::find<std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>,int>(_InIt,const _InIt,const int &)"
           with
           [
@@ -180,11 +179,11 @@ D:\VS\VC\Tools\MSVC\14.38.33130\include\type_traits(2441,55): error C2676:      
           ]
   D:\VS\VC\Tools\MSVC\14.38.33130\include\type_traits(2441,55):
   контекст создания экземпляра шаблона (сначала самый старый)
-  	D:\Desktop\College\Programming\Collaborative\BinanceCPP\BinanceCPP\BinanceCPP.cpp(116,33):
+  	D:\Desktop\College\Programming\Collaborative\BinanceCPP\BinanceCPP\BinanceCPP.cpp(118,33):
   	выполняется компиляция ссылки на экземпляр класс шаблон функции "std::map<CryptoCurrency,double,std::less<CryptoCurrency>,std::allocator<std::pair<const CryptoCurrency,double>>>"
   	D:\VS\VC\Tools\MSVC\14.38.33130\include\map(345,18):
   	во время компиляции функции-члена класс шаблон "double &std::map<CryptoCurrency,double,std::less<CryptoCurrency>,std::allocator<std::pair<const CryptoCurrency,double>>>::operator [](const CryptoCurrency &)"
-  		D:\Desktop\College\Programming\Collaborative\BinanceCPP\BinanceCPP\BinanceCPP.cpp(95,34):
+  		D:\Desktop\College\Programming\Collaborative\BinanceCPP\BinanceCPP\BinanceCPP.cpp(97,34):
   		см. первую ссылку на "std::map<CryptoCurrency,double,std::less<CryptoCurrency>,std::allocator<std::pair<const CryptoCurrency,double>>>::operator []" в "User::depositCurrencies"
   	D:\VS\VC\Tools\MSVC\14.38.33130\include\map(346,16):
   	выполняется компиляция ссылки на экземпляр шаблон функции "std::pair<std::_Tree_node<std::pair<const CryptoCurrency,double>,std::_Default_allocator_traits<_Alloc>::void_pointer> *,bool> std::map<CryptoCurrency,double,std::less<CryptoCurrency>,_Alloc>::_Try_emplace<const CryptoCurrency&,>(_Keyty)"

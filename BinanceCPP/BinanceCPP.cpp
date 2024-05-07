@@ -60,7 +60,7 @@ class User {
 public:
     User(string& login, string& password, string& country){
         this->login = login;
-        this->password == password;
+        this->password = password;
         this->country = country;
     }
 
@@ -154,7 +154,8 @@ public:
         if (country == "RU") {
             amount = amount * ruToUS;
         }
-        if (by.getBalance() >= amount) {
+        double balance = by.getBalance();
+        if (balance >= amount) {
             if (country == "US") {
                 balances[by][availableCurrencies[0]] += amount;
             }
@@ -205,10 +206,12 @@ public:
                 cout << "Amount: ";
                 cin >> amount;
                 CryptoCurrency currency = availableCurrencies[i - 1];
-                if (currency.getAmount() <= amount) {
+                double currencyAmount = currency.getAmount();
+                if (currencyAmount <= amount) {
                     if (currency.getPrice() * amount <= balances[by][availableCurrencies[0]]) {
                         balances[by][currency] = amount;
-                        balances[by][availableCurrencies[0]] -= currency.getPrice() * amount;
+                        double price = currency.getPrice();
+                        balances[by][availableCurrencies[0]] -= price * amount;
                         currency.buyMe(amount);
                         cout << "Succesfully purchase\n";
                         return true;
